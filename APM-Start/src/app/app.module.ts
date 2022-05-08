@@ -2,8 +2,9 @@ import { registerLocaleData } from '@angular/common';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule, SkipSelf } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import localeSk from '@angular/common/locales/sk';
-
+ 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './products/product-list.component';
 import { StarComponent } from './shared/star.component';
@@ -18,7 +19,7 @@ import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
     StarComponent
   ],
   imports: [
-    BrowserModule, FormsModule
+    BrowserModule, FormsModule, HttpClientModule
   ],
   bootstrap: [AppComponent],
 
