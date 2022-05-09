@@ -12,7 +12,8 @@ import { ProductModule } from './products/product.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
