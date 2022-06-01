@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class='row'>
-            <div class='col-md-6'>
+            <div class='col-md-6' *ngIf="listFilter">
                 <h4>Filtered by: {{listFilter}}</h4>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 <thead>
                     <tr>
                         <th>
-                            <button class='btn btn-primary'
+                            <button class='btn btn-outline-primary btn-sm'
                             (click) = 'toggleImage()'>
                                 {{showImage ? 'Hide' : 'Show'}} Image
                             </button>
@@ -39,12 +39,14 @@
                             [title]='product.productName | lowercase'
                             [style.width.px]='imageWidth'
                             [style.margin.px]='imageMargin'></td>
-                        <td><a [routerLink]='["/products", product.productId]'>{{product.productName}}</a></td>
+                        <td><a [routerLink]='["/products", product.id]'>{{product.productName}}</a></td>
                         <td>{{product.productCode | lowercase | convertToSpaces: '-'}}</td>
                         <td>{{product.releaseDate}}</td>
                         <td>{{product.price | currency: 'EUR':'symbol':'1.2-2':'sk'}}</td>
                         <td><pm-star [rating]='product.starRating'
                             (ratingClicked)='onRatingClicked($event)'></pm-star></td>
+                        <td><button class='btn btn-outline-primary btn-sm' 
+                            [routerLink]="['/products', product.id, 'edit']">Edit</button></td>
                     </tr>
                 </tbody>
             </table>

@@ -56,4 +56,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   onRatingClicked(message: string): void {
     this.pageTitle = 'Product List: ' + message;
   }
+
+  editItem(): void {
+    this.showImage = !this.showImage;
+  }
 }
