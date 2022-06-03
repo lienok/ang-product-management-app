@@ -1,0 +1,74 @@
+<div class='card'>
+    <div class='card-header'>
+        Edit Product: ....
+    </div>
+    <div class='card-body'>
+        <form novalidate
+              [formGroup]="productForm">
+            <div class='form-group row mb-2'>
+                <label class='col-md-2 col-form-label'
+                       for="productName">Product Name</label>
+                <div class='col-md-8'>
+                    <input class='form-control'
+                           type='text'
+                           id='productName'
+                           formControlName='productName'
+                           placeholder='Name (required)'
+                           [ngClass]="{'is-invalid': 'chyba'}" />
+                </div>
+            </div>
+
+            <div class='form-group row mb-2'>
+                <label class='col-md-2 col-form-label'
+                       for="productCode">Product Code</label>
+                <div class='col-md-8'>
+                    <input class='form-control'
+                           type='text'
+                           id='productCode'
+                           formControlName='productCode'
+                           placeholder='Code (required)'
+                           [ngClass]="{'is-invalid': 'chyba'}" />
+                </div>
+            </div>
+
+            <div class='form-group row mb-2'>
+                <label class='col-md-2 col-form-label'
+                       for="starRating">Star Rating (1-5)</label>
+                <div class='col-md-8'>
+                    <input class='form-control'
+                           type='text'
+                           id='starRating'
+                           formControlName='starRating'
+                           [ngClass]="{'is-invalid': 'chyba'}" />
+                </div>
+            </div>
+
+            <div formArrayName="tags">
+                <div class="form-group row mb-2"
+                     *ngFor="let tag of tags.controls; let i=index">
+                    <label class="col-md-2 col-form-label"
+                           attr.for="{{'tag' + i}}">Tag</label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                               id="{{'tag' + i}}"
+                               type="text"
+                               placeholder="Tag"
+                               [formControlName]="i" />
+                    </div>
+                </div>
+            </div>
+
+            <div class='form-group row mb-2'>
+                <div class='col-md-2'><label for="starRating">Description</label> </div>
+                <div class='col-md-8'>
+                    <textarea class='form-control'
+                              id='description'
+                              formControlName='description'
+                              placeholder='Description'></textarea>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

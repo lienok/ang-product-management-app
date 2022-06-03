@@ -1,16 +1,16 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators'
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators'
 import { IProduct } from './product';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ProductService {
     private productUrl = 'api/products/products.json';
 
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient) { }
 
-    getProducts(): Observable<IProduct[]>{
+    getProducts(): Observable<IProduct[]> {
         return this.http.get<IProduct[]>(this.productUrl).pipe(
             tap(data => console.log('All', JSON.stringify(data))),
             catchError(this.handleError)
@@ -18,6 +18,10 @@ export class ProductService {
     }
 
     getProduct(id: number): Observable<IProduct | undefined> {
+        if (id === 0) {
+            console.log('id is 0');
+            return of(this.initializeProduct());
+          }
         return this.getProducts().pipe(
             map((products: IProduct[]) => products.find(p => p.id === id))
         )
@@ -37,5 +41,19 @@ export class ProductService {
         }
         console.error(errorMessage);
         return throwError(errorMessage);
+    }
+
+    initializeProduct(): IProduct {
+        return {
+            id: 0,
+            productName: '',
+            productCode: '',
+            releaseDate: '',
+            price: 0,
+            tags: [''],
+            description: '',
+            starRating: 0,
+            imageUrl: ''
+        }
     }
 }
