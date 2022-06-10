@@ -4,7 +4,8 @@
     </div>
     <div class='card-body'>
         <form novalidate
-              [formGroup]="productForm">
+              [formGroup]="productForm"
+              (ngSubmit)="saveProduct()">
             <div class='form-group row mb-2'>
                 <label class='col-md-2 col-form-label'
                        for="productName">Product Name</label>
@@ -68,7 +69,34 @@
                 </div>
             </div>
 
+            <div class='form-group row mb-2'>
+                <div class='offset-md-2 col-md-4'>
+                    <button class='btn btn-primary mr-3'
+                            style='width:80px'
+                            type="submit"
+                            [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                            [disabled]="!productForm.valid">
+                        Save
+                    </button>
+                    <button class='btn btn-outline-secondary mr-3'
+                            style='width:80px'
+                            type="button"
+                            [routerLink]="['/products']"
+                            title='Cancel your edit'>
+                        Cancel
+                    </button>
+                    <button class='btn btn-outline-warning mr-3'
+                            style='width:80px'
+                            type="button"
+                            (click)="deleteProduct()"
+                            title='Delete this product'>
+                        Delete
+                    </button>
+                </div>
+            </div>
 
         </form>
     </div>
+    <div class='alert alert-danger'
+         *ngIf='errorMessage'>{{errorMessage}}</div>
 </div>
