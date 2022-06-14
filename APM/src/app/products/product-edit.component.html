@@ -4,18 +4,20 @@
     </div>
     <div class='card-body'>
         <form novalidate
-              [formGroup]="productForm"
-              (ngSubmit)="saveProduct()">
+              (ngSubmit)="saveProduct()"
+              [formGroup]="productForm">
+
             <div class='form-group row mb-2'>
                 <label class='col-md-2 col-form-label'
                        for="productName">Product Name</label>
                 <div class='col-md-8'>
                     <input class='form-control'
-                           type='text'
                            id='productName'
-                           formControlName='productName'
+                           type='text'
                            placeholder='Name (required)'
-                           [ngClass]="{'is-invalid': 'chyba'}" />
+                           formControlName='productName'
+                           [ngClass]="{'is-invalid': displayMessage.productName}" />
+                    <span class='invalid-feedback'>{{displayMessage.productName}}</span>
                 </div>
             </div>
 
@@ -28,7 +30,8 @@
                            id='productCode'
                            formControlName='productCode'
                            placeholder='Code (required)'
-                           [ngClass]="{'is-invalid': 'chyba'}" />
+                           [ngClass]="{'is-invalid': displayMessage.productCode}" />
+                    <span class='invalid-feedback'>{{displayMessage.productCode}}</span>
                 </div>
             </div>
 
@@ -39,8 +42,8 @@
                     <input class='form-control'
                            type='text'
                            id='starRating'
-                           formControlName='starRating'
-                           [ngClass]="{'is-invalid': 'chyba'}" />
+                           formControlName='starRating' />
+                    <span class='invalid-feedback'>{{displayMessage.starRating}}</span>
                 </div>
             </div>
 
@@ -54,7 +57,8 @@
                                id="{{'tag' + i}}"
                                type="text"
                                placeholder="Tag"
-                               [formControlName]="i" />
+                               [formControlName]="i"
+                               [ngClass]="{'is-invalid': displayMessage.starRating}" />
                     </div>
                 </div>
             </div>
